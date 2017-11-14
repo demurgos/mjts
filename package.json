@@ -1,0 +1,29 @@
+{
+  "name": "mjts",
+  "version": "1.0.0",
+  "description": "Micheal Jackson Typescript",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/demurgos/mjts"
+  },
+  "keywords": [
+    "typescript",
+    "mjs",
+    "example"
+  ],
+  "scripts": {
+    "preinstall": "cd typescript && npm install && npm run build",
+    "build:mjs": "node node_modules/typescript/built/local/tsc --rootDir src/lib --outDir build/mjs --moduleResolution node --allowSyntheticDefaultImports --module esnext src/lib/*.ts && mv build/mjs/mjts.js build/mjs/mjts.mjs",
+    "build:cjs": "node node_modules/typescript/built/local/tsc --rootDir src/lib --outDir build/cjs --moduleResolution node --ESMInterop src/lib/*.ts",
+    "start:mjs": "npm run build:mjs && node --experimental-modules build/mjs/mjts.mjs",
+    "start:cjs": "npm run build:cjs && node build/cjs/mjts.js"
+  },
+  "author": "Charles Samborski <demurgos@demurgos.net> (https://demurgos.net)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^8.0.51",
+    "typescript": "file://./typescript",
+    "hybrid": "file://./hybrid"
+  }
+}
